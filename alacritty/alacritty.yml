@@ -1,1 +1,25 @@
-../../.config/alacritty/alacritty.yml
+window:
+  padding:
+    x: 5
+    y: 5
+    startup_mode: Fullscreen
+font:
+  normal: 
+   family: Inconsolata Nerd Font
+   style: Medium
+  bold:
+    family: Inconsolata Nerd Font
+    style: Bold
+  italic:
+    family: Inconsolata Nerd Font
+    style: MediumItalic
+  bold_italic:
+    family: Inconsolata Nerd Font
+    style: BoldItalic
+  size: 11.4
+cursor:
+  style:
+    shape: Block
+    blinking: Always 
+key_bindings:
+  - { key: N, mods: Control|Shift, action: SpawnNewInstance}
