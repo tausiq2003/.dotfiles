@@ -21,5 +21,6 @@ cursor:
   style:
     shape: Block
     blinking: Always 
+
 key_bindings:
   - { key: N, mods: Control|Shift, action: SpawnNewInstance}
