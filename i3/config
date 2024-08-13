@@ -21,7 +21,6 @@ font pango:Ubuntu Mono 12
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
-exec --no-startup-id dex --autostart --environment i3
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -33,19 +32,27 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
+exec --no-startup-id pavucontrol --start
+exec --no-startup-id volumeicon
+exec --no-startup-id redshift - x && redshift -O 5000
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+#realized percentage is cool, cuz the difference varies.
+bindsym XF86AudioRaiseVolume exec --no-startup-id bash -c 'pactl set-sink-volume @DEFAULT_SINK@ +5% && vol=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP "\d+%") && notify-send -t 250 "Volume: $vol" && $refresh_i3status'
+bindsym XF86AudioLowerVolume exec --no-startup-id bash -c 'pactl set-sink-volume @DEFAULT_SINK@ -4% && vol=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP "\d+%") && notify-send -t 250 "Volume: $vol" && $refresh_i3status'
+bindsym XF86AudioMute exec --no-startup-id bash -c 'pactl set-sink-mute @DEFAULT_SINK@ toggle && status=$(pactl get-sink-mute @DEFAULT_SINK@ | grep -oP "(yes|no)") && notify-send -t 250 "Mute: $status" && $refresh_i3status'
+bindsym XF86AudioMicMute exec --no-startup-id bash -c 'pactl set-source-mute @DEFAULT_SOURCE@ toggle && status=$(pactl get-source-mute @DEFAULT_SOURCE@ | grep -oP "(yes|no)") && notify-send -t 250 "Mic Mute: $status" && $refresh_i3status'
+bindsym XF86MonBrightnessUp exec --no-startup-id bash -c 'brightnessctl set +2.5% && notify-send -t 250 "Brightness: $(brightnessctl get)"'
+bindsym XF86MonBrightnessDown exec --no-startup-id bash -c 'brightnessctl set 2.5%- && notify-send -t 250 "Brightness: $(brightnessctl get)"'
+
+
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec alacritty 
 
 # kill focused window
 bindsym $mod+q kill
@@ -59,10 +66,10 @@ bindsym $mod+d exec --no-startup-id dmenu_run
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -71,10 +78,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -83,7 +90,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+x split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -105,6 +112,9 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
+bindsym Mod4+l exec --no-startup-id i3lock
+bindsym Mod4+Shift+l exec --no-startup-id sudo systemctl suspend-then-hibernate && i3lock
+
 # focus the child container
 #bindsym $mod+d focus child
 
@@ -119,7 +129,7 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10"
+set $ws10 "0"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -186,4 +196,3 @@ bar {
         position top
 }
 exec always nitrogen --restore
-exec picom -f
