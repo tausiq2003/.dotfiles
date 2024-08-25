@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cmd=$(find ~/Personal ~/.config -mindepth 1 -maxdepth 1 -type d | fzf )
+cmd=$(find ~/Personal ~/ -mindepth 1 -maxdepth 1 -type d | fzf )
 
 if [[ -z $cmd ]];then
     exit 1

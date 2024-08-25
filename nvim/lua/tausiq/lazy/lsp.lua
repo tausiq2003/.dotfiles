@@ -14,7 +14,9 @@ return {
         "onsails/lspkind.nvim",
 --        "aca/emmet-ls"
         "olrtg/emmet-language-server",
-        "rafamadriz/friendly-snippets"
+        "rafamadriz/friendly-snippets",
+        "NvChad/nvim-colorizer.lua",
+        "roobert/tailwindcss-colorizer-cmp.nvim"
     },
 
     config = function()
@@ -44,6 +46,7 @@ return {
                 "gopls",
                 --webdev
                 "tsserver",
+                "tailwindcss"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -77,11 +80,13 @@ return {
 
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
+
         cmp.setup({
             formatting = {
-                format = require('lspkind').cmp_format({
-                    width_text=false, maxwidth = 50
-                })
+                format = function(entry, item)
+                    require('lspkind').cmp_format({ width_text = false, maxwidth = 50 })(entry, item)
+                    return require("tailwindcss-colorizer-cmp").formatter(entry, item)
+                end
             },
             snippet = {
                 expand = function(args)
@@ -92,21 +97,27 @@ return {
                 ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
                 ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
                 ['<CR>'] = cmp.mapping.confirm({ select = true }),
-              --  ["<C-Space>"] = cmp.mapping.complete(),
+                -- ["<C-Space>"] = cmp.mapping.complete(),
             }),
             sources = cmp.config.sources({
                 { name = 'nvim_lsp' },
-                { name = 'luasnip' }, -- For luasnip users.
-            },{
+                { name = 'luasnip' }, -- For `luasnip` users.
+            }, {
                 { name = 'buffer' },
             })
         })
-        
 
         require("luasnip.loaders.from_vscode").lazy_load()
         require("luasnip").filetype_extend("javascriptreact", { "html" })
         require("luasnip").filetype_extend("typescriptreact", { "html" })
        require('lspconfig').emmet_language_server.setup{}
+       require("colorizer").setup({
+           user_default_options = {
+               tailwind = true,
+           },
+       })
+
+
         require('lspkind').init({
             -- DEPRECATED (use mode instead): enables text annotations
             --
