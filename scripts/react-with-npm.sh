@@ -3,7 +3,7 @@
 #thanks to jay kumar gupta on hashnode
 
 # Create a new Vite project with React template
-npm create vite@latest "$1" -- --template react
+npm create vite@latest "$1" -- --template react-ts
 
 cd "$1"
 
