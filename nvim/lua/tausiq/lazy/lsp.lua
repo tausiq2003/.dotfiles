@@ -12,7 +12,6 @@ return {
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
         "onsails/lspkind.nvim",
---        "aca/emmet-ls"
         "olrtg/emmet-language-server",
         "rafamadriz/friendly-snippets",
         "NvChad/nvim-colorizer.lua",
@@ -26,12 +25,12 @@ return {
         "force",
         {},
         vim.lsp.protocol.make_client_capabilities(),
-    
+
         cmp_lsp.default_capabilities())
 
         capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-        require("fidget").setup({})
+        require("fidget").setup({}) 
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
@@ -42,10 +41,11 @@ return {
                 --python
                 "pyright",
                 "ruff",
+                
                 --golang
                 "gopls",
                 --webdev
-                "tsserver",
+                "ts_ls",
                 "tailwindcss"
             },
             handlers = {
@@ -69,10 +69,13 @@ return {
                             }
                         }
                     } 
-                    lspconfig.tsserver.setup{
+                    lspconfig.ts_ls.setup{
                         filetypes = { "typescript", "typescriptreact", "tyepscript.tsx"},
                         cmd = {"typescript-language-server" ,"--stdio"}
 
+                    }
+                    lspconfig.pyright.setup{
+                        filetypes={"python"}
                     }
                 end,
             }
@@ -107,15 +110,15 @@ return {
             })
         })
 
-        require("luasnip.loaders.from_vscode").lazy_load()
+        require("luasnip.loaders.from_vscode").lazy_load({paths = {vim.fn.stdpath("config") .. "/lua/tausiq/my-own-snippets"}})
         require("luasnip").filetype_extend("javascriptreact", { "html" })
         require("luasnip").filetype_extend("typescriptreact", { "html" })
-       require('lspconfig').emmet_language_server.setup{}
-       require("colorizer").setup({
-           user_default_options = {
-               tailwind = true,
-           },
-       })
+        require('lspconfig').emmet_language_server.setup{}
+        require("colorizer").setup({
+            user_default_options = {
+                tailwind = true,
+            },
+        })
 
 
         require('lspkind').init({

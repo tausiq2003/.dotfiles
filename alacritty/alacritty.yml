@@ -16,11 +16,11 @@ font:
   bold_italic:
     family: Inconsolata Nerd Font
     style: BoldItalic
-  size: 11.4
+  size: 13.5
+
 cursor:
   style:
     shape: Block
     blinking: Always 
 
-key_bindings:
-  - { key: N, mods: Control|Shift, action: SpawnNewInstance}
+

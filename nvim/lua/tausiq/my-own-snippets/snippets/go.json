@@ -1,0 +1,11 @@
+{
+    "if not nil": {
+    "prefix": "ifnn",
+    "body": [
+      "if ${1:err} != nil {",
+      "\t${2:// Your code here}",
+      "}"
+    ],
+    "description": "If not nil check"
+  }
+}

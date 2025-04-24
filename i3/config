@@ -34,7 +34,8 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id pavucontrol --start
 exec --no-startup-id volumeicon
-exec --no-startup-id redshift - x && redshift -O 5000
+exec --no-startup-id redshift -x && redshift -O 5000
+exec --no-startup-id nitrogen --restore
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -194,5 +195,6 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status --config ~/.config/i3/i3status.conf
         position top
+
+
 }
-exec always nitrogen --restore
