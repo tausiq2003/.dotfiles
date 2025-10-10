@@ -108,6 +108,9 @@ alias vim=nvim
 
 #exports
 export PATH=$PATH:/usr/local/go/bin
+
+# add here because of third party libraries, go separates them, cores are installed above
+export PATH=$PATH:$(go env GOPATH)/bin
 export PATH=~/bin:$PATH
 
 #fzf -oh no it was not added
@@ -118,3 +121,10 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
+
+# bun completions
+[ -s "/home/tausiq/.bun/_bun" ] && source "/home/tausiq/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

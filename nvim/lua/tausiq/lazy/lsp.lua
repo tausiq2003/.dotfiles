@@ -15,7 +15,8 @@ return {
         "olrtg/emmet-language-server",
         "rafamadriz/friendly-snippets",
         "NvChad/nvim-colorizer.lua",
-        "roobert/tailwindcss-colorizer-cmp.nvim"
+        "roobert/tailwindcss-colorizer-cmp.nvim",
+        "github/copilot.vim"
     },
 
     config = function()
@@ -110,7 +111,7 @@ return {
             })
         })
 
-        require("luasnip.loaders.from_vscode").lazy_load({paths = {vim.fn.stdpath("config") .. "/lua/tausiq/my-own-snippets"}})
+        require("luasnip.loaders.from_vscode").lazy_load()
         require("luasnip").filetype_extend("javascriptreact", { "html" })
         require("luasnip").filetype_extend("typescriptreact", { "html" })
         require('lspconfig').emmet_language_server.setup{}

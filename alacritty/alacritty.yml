@@ -5,16 +5,16 @@ window:
     startup_mode: Fullscreen
 font:
   normal: 
-   family: Inconsolata Nerd Font
+   family: ComicShannsMono Nerd Font
    style: Medium
   bold:
-    family: Inconsolata Nerd Font
+    family: ComicShannsMono Nerd Font
     style: Bold
   italic:
-    family: Inconsolata Nerd Font
+    family: ComicShannsMono Nerd Font
     style: MediumItalic
   bold_italic:
-    family: Inconsolata Nerd Font
+    family: ComicShannsMono Nerd Font
     style: BoldItalic
   size: 13.5
 
