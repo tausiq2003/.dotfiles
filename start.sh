@@ -21,3 +21,8 @@ find .dotfiles -type f -exec chmod 644 {} \;
 # make directories executable
 find .dotfiles -type d -exec chmod 755 {} \;
 
+
+# git config --global user.email and user.name
+# use signed commits and tags
+# git config --global commit.gppsign true
+# setup ssh
