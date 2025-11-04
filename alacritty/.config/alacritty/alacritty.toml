@@ -1,0 +1,30 @@
+[window.padding]
+x = 5
+y = 5
+
+[window]
+startup_mode = "Maximized"
+
+[font.normal]
+family = "ComicShannsMono Nerd Font"
+style = "Medium"
+
+[font.bold]
+family = "ComicShannsMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "ComicShannsMono Nerd Font"
+style = "MediumItalic"
+
+[font.bold_italic]
+family = "ComicShannsMono Nerd Font"
+style = "BoldItalic"
+
+[font]
+size = 9.5
+
+[cursor.style]
+shape = "Block"
+blinking = "Always"
+

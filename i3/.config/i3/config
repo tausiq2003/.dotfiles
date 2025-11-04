@@ -13,11 +13,11 @@ set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Ubuntu Mono 12
+#font pango:Ubuntu Mono 8.5
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans Mono 8.5
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -31,11 +31,10 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
-exec --no-startup-id pavucontrol --start
-exec --no-startup-id volumeicon
-exec --no-startup-id redshift -x && redshift -O 5000
-exec --no-startup-id nitrogen --restore
+exec --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rate 60 --gamma 0.7:0.7:0.7
+exec --no-startup-id redshift -O 5000
+exec --no-startup-id copyq
+exec --no-startup-id xset r rate 200 35 &
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -114,7 +113,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 bindsym Mod4+l exec --no-startup-id i3lock
-bindsym Mod4+Shift+l exec --no-startup-id sudo systemctl suspend && i3lock
+bindsym Mod4+Shift+l exec --no-startup-id systemctl suspend && i3lock
 
 # focus the child container
 #bindsym $mod+d focus child

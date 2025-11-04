@@ -35,7 +35,6 @@ return {
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
-                "lua_ls",
                 "rust_analyzer",
                 --cpp
                 "clangd",
@@ -47,7 +46,7 @@ return {
                 "gopls",
                 --webdev
                 "ts_ls",
-                "tailwindcss"
+                "tailwindcss",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -60,6 +59,7 @@ return {
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.lua_ls.setup {
+                        cmd = {"lua-language-server"},
                         capabilities = capabilities,
                         settings = {
                             Lua = {
@@ -114,7 +114,7 @@ return {
         require("luasnip.loaders.from_vscode").lazy_load()
         require("luasnip").filetype_extend("javascriptreact", { "html" })
         require("luasnip").filetype_extend("typescriptreact", { "html" })
-        require('lspconfig').emmet_language_server.setup{}
+        vim.lsp.config.emmet_language_server = {}
         require("colorizer").setup({
             user_default_options = {
                 tailwind = true,
