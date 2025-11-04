@@ -19,3 +19,6 @@ How to unpack
 12. download the backup
 13. unzip and decrypt the backup
 14. ig, you are gtg.
+
+
+Note to preserve history of git just install nixos in your home directory and cp all the content to /etc/nixos with new git init there. And while packing just move them all in nix-setup.
