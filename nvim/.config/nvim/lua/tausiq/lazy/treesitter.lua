@@ -1,12 +1,11 @@
 return{
     'nvim-treesitter/nvim-treesitter',
-    'nvim-treesitter/playground',
 
     build=":TSUpdate",
     config=function()
         require'nvim-treesitter.configs'.setup {
             -- A list of parser names, or "all" (the five listed parsers should always be installed)
-            ensure_installed = {"javascript", "tsx", "typescript", "c", "lua", "vim", "vimdoc", "cpp", "jsx", "lua", "json", "html" },
+            ensure_installed = {"javascript", "tsx", "typescript", "c", "lua", "vim", "vimdoc", "cpp" , "lua", "json", "html", "go", "gomod", "gosum" },
             -- Install parsers synchronously (only applied to `ensure_installed`)
             sync_install = false,
 

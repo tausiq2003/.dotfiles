@@ -7,10 +7,10 @@ return {
         build = "make install_jsregexp",
 
         dependencies = { "rafamadriz/friendly-snippets" },
+        event = "InsertEnter",
 
         config = function()
             local ls = require("luasnip")
-            ls.filetype_extend("javascript", { "jsdoc" })
 
             vim.keymap.set({"i"}, "<C-s>e", function() ls.expand() end, {silent = true})
 

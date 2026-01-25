@@ -43,8 +43,8 @@ return {
             filetype = {
                 javascript = {prettier},
                 typescript = {prettier},
-                javascriptreact = {prettier},  
-                typescriptreact = {prettier}, 
+                javascriptreact = {prettier},
+                typescriptreact = {prettier},
 
                 cpp = {clang_format},
                 c = {clang_format},

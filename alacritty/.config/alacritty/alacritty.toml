@@ -2,6 +2,10 @@
 x = 5
 y = 5
 
+[general]
+import = [
+  "~/.config/alacritty/themes/themes/gruvbox_dark.toml"
+]
 [window]
 startup_mode = "Maximized"
 

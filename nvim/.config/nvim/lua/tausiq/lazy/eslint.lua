@@ -1,12 +1,12 @@
 return {
     'neovim/nvim-lspconfig',
-    'jose-elias-alvarez/null-ls.nvim',
+    'nvimtools/none-ls.nvim',
     'MunifTanjim/eslint.nvim',
     config = function()
-        local null_ls = require("null-ls")
+        local none_ls = require("none-ls")
         local eslint = require("eslint")
 
-        null_ls.setup()
+        none_ls.setup()
 
         eslint.setup({
             bin = 'eslint', -- or `eslint_d`
