@@ -1,0 +1,17 @@
+{
+  "cpstart": {
+    "prefix": "cpstart",
+    "body": [
+      "#include<bits/stdc++.h>",
+      "",
+      "using namespace std;",
+      "",
+      "int main() {",
+      "\tios::sync_with_stdio(false);",
+      "\tcin.tie(NULL);",
+      "\t${1:// Start here}",
+      "}"
+    ],
+    "description": "dsa cpp"
+  }
+}

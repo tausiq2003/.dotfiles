@@ -32,9 +32,32 @@ return {
             capabilities.textDocument.completion.completionItem.snippetSupport = true
 
             require("fidget").setup({})
+
+            -- Configure lua_ls globally with love2d support
+            vim.lsp.config('lua_ls', {
+                settings = {
+                    Lua = {
+                        runtime = { version = "LuaJIT" },
+                        diagnostics = {
+                            globals = { "vim", "love" },
+                        },
+                        workspace = {
+                            library = {
+                                vim.env.VIMRUNTIME,
+                                "${3rd}/love2d/library",
+                                "${3rd}/luv/library",
+                            },
+                            checkThirdParty = false,
+                        },
+                        telemetry = { enable = false },
+                    },
+                },
+            })
+
             require("mason").setup()
             require("mason-lspconfig").setup({
                 ensure_installed = {
+                    "lua_ls",
                     "rust_analyzer",
                     --cpp
                     "clangd",
@@ -57,25 +80,7 @@ return {
                     end,
 
 
-                    ["lua_ls"] = function()
-                        require("lspconfig").lua_ls.setup {
-                            capabilities = capabilities,
-                            settings = {
-                                Lua = {
-                                    runtime = { version = "LuaJIT" },
-                                    diagnostics = {
-                                        -- This tells the language server that 'vim' is a global
-                                        globals = { "vim" },
-                                    },
-                                    workspace = {
-                                        -- This makes the server aware of Neovim runtime files
-                                        library = vim.api.nvim_get_runtime_file("", true),
-                                    },
-                                    telemetry = { enable = false },
-                                },
-                            },
-                        }
-                    end,
+
                     ["ts_ls"] = function()
                         require("lspconfig").ts_ls.setup{
                             capabilities = capabilities, -- ADD THIS
@@ -132,6 +137,9 @@ return {
             })
 
             require("luasnip.loaders.from_vscode").lazy_load()
+            require("luasnip.loaders.from_vscode").lazy_load({
+                paths = { vim.fn.stdpath("config") .. "/lua/tausiq/my-own-snippets" }
+            })
             require("luasnip").filetype_extend("javascriptreact", { "html" })
             require("luasnip").filetype_extend("typescriptreact", { "html" })
             require("colorizer").setup({

@@ -18,6 +18,15 @@ vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
+vim.diagnostic.enable = true
+vim.opt.list = false
+vim.diagnostic.config({
+    virtual_text={
+        prefix = "",
+        spacing= 2
+    },
+
+})
 
 --vim.opt.colorcolumn = "80"
 vim.o.cmdheight = 1

@@ -7,6 +7,12 @@
           "go"
         ],
         "path": "./snippets/go.json"
+      },
+      {
+        "language": [
+          "cpp"
+        ],
+        "path": "./snippets/cp.json"
       }
     ]
   }
